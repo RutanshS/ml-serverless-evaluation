@@ -1,0 +1,19 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: logger-service
+  namespace: demo
+spec:
+  template:
+    spec:
+      containers:
+        - image: akshat1304/logger-service:latest
+          ports:
+            - containerPort: 8082
+          resources:
+            requests:
+              cpu: "1"
+              memory: "512Mi"
+            limits:
+              cpu: "2"
+              memory: "1Gi"

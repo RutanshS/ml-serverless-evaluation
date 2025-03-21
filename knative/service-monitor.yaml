@@ -1,0 +1,20 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: demo-knative-monitor
+  namespace: demo
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      serving.knative.dev/service: ml-image-classifier
+  namespaceSelector:
+    matchNames:
+      - demo
+  endpoints:
+    - port: http2
+      interval: 30s
+      path: /metrics
+      scheme: http
+      honorLabels: true

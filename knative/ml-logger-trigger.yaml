@@ -1,0 +1,15 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: log-ml-predictions
+  namespace: demo
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: ml.prediction
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: logger-service

@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: react-example
+  namespace: demo
+spec:
+  selector:
+    serving.knative.dev/service: react-example  # This is the Knative service label
+  ports:
+    - port: 80
+      targetPort: 80
